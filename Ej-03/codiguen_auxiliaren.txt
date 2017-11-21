@@ -1,0 +1,69 @@
+//            NodoArbol<T> *tmpNuevaRaiz = this->der->izq; //codigo faltante xd
+//            NodoArbol<T> *tmpIzq = this->izq;
+//            NodoArbol<T> *tmpDer = this->der;   //muchos tmp;
+//
+//            tmpDer->izq = this;
+//            this->der = tmpNuevaRaiz->der;
+//            this->izq = tmpNuevaRaiz->izq;
+//            tmpNuevaRaiz->izq = tmpIzq;
+//            tmpNuevaRaiz->der = tmpDer;
+//
+//
+//            return tmpNuevaRaiz->der->izq->remover(d);
+
+
+//            this->der->izq = this;
+//            this->izq = tmpNuevaRaiz->izq;
+//            this->der = tmpNuevaRaiz->der;
+//            tmpNuevaRaiz->der =
+
+
+
+//            /*1*/
+//
+//            leer en carmen pg 470
+//            return this->der->izq;
+
+            /*OP 2*/
+//            T datAnt = this->dato;  // seria d
+//            T datTmp = this->der->izq->dato;
+//            this->dato = datTmp;
+//            this->der->izq->dato = datAnt;
+//            return this->remover(datAnt);     come nodos
+
+//            this->der->put(this->izq);
+//            return der; desbalancea
+
+
+
+
+
+
+////////////////////*****************************\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            NodoArbol<T> *tmpAntNuevaRaiz = this->der;
+            NodoArbol<T> *tmpNuevaRaiz;
+            NodoArbol<T> *tmpThisDer;
+
+            if (this->der->izq != nullptr) {
+                tmpAntNuevaRaiz = this->der;
+                while (tmpAntNuevaRaiz->izq != nullptr && tmpAntNuevaRaiz->izq->izq != nullptr) {
+                    tmpAntNuevaRaiz = tmpAntNuevaRaiz->izq;
+                }   // evitanto un poco la recursion
+
+                tmpNuevaRaiz = tmpAntNuevaRaiz->izq;
+                tmpThisDer = this->der;
+                tmpNuevaRaiz->izq = this->izq;
+                this->izq = nullptr;
+            }
+            tmpAntNuevaRaiz->izq = this;
+            this->der = tmpNuevaRaiz->der;
+            tmpNuevaRaiz->der = this->der;
+
+            this->put(tmpNuevaRaiz);
+            this->remover(d);
+            return tmpNuevaRaiz;
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+
