@@ -9,8 +9,8 @@ add_subdirectory(test)
 set(SOURCE_FILES_01 Ej-01/main.cpp )
 add_executable(Ej-01 ${SOURCE_FILES_01})
 
-set(SOURCE_FILES_02 Ej-02/main.cpp)
+set(SOURCE_FILES_02 Ej-02/main.cpp Ej-02/Lista.h)
 add_executable(Ej-02 ${SOURCE_FILES_02})
 
-set(SOURCE_FILES_03 Ej-03/main.cpp)
+set(SOURCE_FILES_03 Ej-03/main.cpp Ej-03/Arbol.h Ej-03/NodoArbol.h)
 add_executable(Ej-03 ${SOURCE_FILES_03})

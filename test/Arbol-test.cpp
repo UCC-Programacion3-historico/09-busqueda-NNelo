@@ -1,13 +1,13 @@
 #include "gtest/gtest.h"
-#include "../ArbolBinario/ArbolBinario.h"
+#include "../Ej-03/Arbol.h"
 
 
 using namespace std;
 
-ArbolBinario<string> *miArbol;
+Arbol<string> *miArbol;
 
 TEST(test_ArbolBinario, nuevaTablaVacia) {
-    miArbol = new ArbolBinario<string>();
+    miArbol = new Arbol<string>();
     EXPECT_EQ(miArbol->esVacio(), true);
 }
 
@@ -26,6 +26,6 @@ TEST(test_ArbolBinario, obtengoDato) {
 }
 
 TEST(test_ArbolBinario, borroDato) {
-    EXPECT_NO_THROW(miArbol->remove("Tres"));
-    EXPECT_ANY_THROW(miArbol->remove("Tres")) << "Remover no tira exepción";
+    EXPECT_NO_THROW(miArbol->remover("Tres"));
+    EXPECT_ANY_THROW(miArbol->remover("Tres")) << "Remover no tira exepción";
 }
