@@ -17,6 +17,7 @@ private:
     NodoArbol<T> *izq;
     NodoArbol<T> *der;
     int balance;
+    bool puedeCambiar;
 
     int calculaBalance(NodoArbol<T> *);
 
@@ -58,6 +59,7 @@ NodoArbol<T>::NodoArbol(T d) {
     this->izq = nullptr;
     this->der = nullptr;
     balance = 0;
+    puedeCambiar = false;
 }
 
 template<class T>
@@ -72,25 +74,27 @@ NodoArbol<T> *NodoArbol<T>::put(NodoArbol<T> *NN) {
     if (this->dato > NN->dato) {
         if (this->izq == nullptr) {
             this->izq = NN;
-//            this->balance = calculaBalance(this);
             if (this->der != nullptr)
                 this->balance = 0;
             else
                 this->balance = -1;
+            this->puedeCambiar = false;
         } else {
             this->izq = this->izq->put(NN);
+            this->puedeCambiar = true;
             return balancearNodo(this);
         }
     } else {
         if (this->der == nullptr) {
             this->der = NN;
-//            this->balance = calculaBalance(this);
             if (this->izq != nullptr)
                 this->balance = 0;
             else
                 this->balance = 1;
+            this->puedeCambiar = false;
         } else {
             this->der = this->der->put(NN);
+            this->puedeCambiar = true;
             return balancearNodo(this);
         }
     }
@@ -120,16 +124,14 @@ NodoArbol<T> *NodoArbol<T>::remover(T d) {
             this->dato = nd;
             this->izq = this->izq->remover(nd);
         }
-    }
-
-
-
-    else {
+    } else {
         if (this->dato > d) {
             this->izq = this->izq->remover(d);
+            this->puedeCambiar = true;
         } else {
             if (this->dato < d) {
                 this->der = this->der->remover(d);
+                this->puedeCambiar = true;
             }
         }
     }
@@ -145,7 +147,8 @@ T NodoArbol<T>::mayor() {
 
 template<class T>
 NodoArbol<T> *NodoArbol<T>::balancearNodo(NodoArbol<T> *ptr) {
-    ptr->balance = calculaBalance(ptr);
+    if (ptr->puedeCambiar)
+        ptr->balance = calculaBalance(ptr);
     NodoArbol<T> *n1;
     if (this->balance == -2) {
         n1 = ptr->izq;

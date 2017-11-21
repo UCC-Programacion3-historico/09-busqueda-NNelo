@@ -6,24 +6,24 @@ int main() {
 
     int k = 0;
 
-//    srand(time(nullptr));
-//    while (k < 50) {
-//        try {
-//            A.put(rand() % 1000);
-//            k++;
-//        } catch (int e) {}
+    srand(time(nullptr));
+    while (k < 500) {
+        try {
+            A.put(rand() % 1000);
+            k++;
+        } catch (int e) {}
+    }
+
+    A.print();
+    cout << "******************\n";
+    A.inorder();
+    cout << "\n" << k << endl;
+
+//    for (k = 0; k < 3001; k++) {
+//        A.put(k);
 //    }
 //
-//    A.print();
-//    cout << "******************\n";
-//    A.inorder();
-//    cout << "\n" << k << endl;
-
-    for (k = 0; k < 3001; k++) {
-        A.put(k);
-    }
-//
-   A.print();
+//   A.print();
 //    cout << "******************\n";
 
     while (k) {
